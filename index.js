@@ -141,6 +141,7 @@ function findById() {}
  * -----------------------------
  * Returns an array of network objects where the network country matches the inputted `country`. If there are no matching objects, or the input is empty, return an empty array.
  * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
+ * @param {String} country - A country name abbreviation
  * @returns {Object[]} An array of objects, where each network object has a location in the matching country.
  * 
  * EXAMPLE:
