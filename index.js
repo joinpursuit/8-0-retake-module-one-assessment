@@ -96,7 +96,7 @@ function getBikeNetworkWithLowestLongitude() {}
  * @returns {Object} An object where keys are countries (e.g. "AU") and the values are how many networks in the array are in that country (e.g. 2).
  *
  * EXAMPLE:
- *  countByCountry(movies);
+ *  countByCountry(networks);
  *  //> {
       AU: 2,
       BE: 1,
@@ -109,7 +109,7 @@ function countByCountry() {}
 /**
  * findById()
  * -----------------------------
- * Returns a network object from an array of objects based on the ID. If the inputted `networks` array is empty or the ID does not match any movie, return `null`.
+ * Returns a network object from an array of objects based on the ID. If the inputted `networks` array is empty or the ID does not match any bike network, return `null`.
  * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
  * @param {string} id - A unique `id`.
  * @returns {Object|null} The network object with the matching `id`.
