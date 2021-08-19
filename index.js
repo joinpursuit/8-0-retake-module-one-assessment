@@ -79,7 +79,7 @@ function getAllBikeNetworksInTheUS(networks) {
   }
   return countryArr;
 }
-getAllBikeNetworksInTheUS(exampleNetworks);
+//getAllBikeNetworksInTheUS(exampleNetworks);
 /**
  * getBikeNetworkWithLowestLongitude()
  * -----------------------------
@@ -107,8 +107,21 @@ getAllBikeNetworksInTheUS(exampleNetworks);
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
-
+function getBikeNetworkWithLowestLongitude(networks){} //{
+//   if (networks.length === 0) {
+//     return null;
+//   }
+//   let smallest = networks[0];
+//  for (let i = 0; i < networks.length; i++) {
+//    let network = networks[i];
+//    let obj = network.location;
+//    if (obj.longitude < smallest) {
+//      smallest = obj.longitude
+//    }
+//  }
+//  return networks[i];
+// }
+// getBikeNetworkWithLowestLongitude(exampleNetworks);
 /**
  * countByCountry()
  * -----------------------------
@@ -125,7 +138,19 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks){
+  let count = {};
+
+  for (const network of networks) {
+    let obj = network.location
+    if (count[obj.country] !== undefined) {
+      count[obj.country] = count[obj.country] + 1;
+    } else {
+      count[obj.country] = 1;
+    }
+  }
+  return count;
+}
 
 /**
  * findById()
@@ -155,7 +180,17 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+  if (networks.length === 0) {
+    return null;
+  }
+  for (const network of networks) {
+    if (network.id === id){
+      return network;
+    }
+  }
+  return null;
+}
 
 /**
  * filterByCountry()
@@ -172,7 +207,12 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks, country) {}
+  // let countryArr = [];
+  // for (const network of networks){
+  //   let ide = 
+  // }
+//}
 
 /**
  * transformNetworks()
