@@ -106,10 +106,10 @@ function getBikeNetworkWithLowestLongitude(networks) {
   if (!networks.length) {
     return null;
   }
-  let lowestLongitude = Math.min(networks[0].location.longitude);
+  let lowestLongitude = networks[0].location.longitude;
   for (let network of networks) {
-    if (network < lowestLongitude) {
-      lowestLongitude = network; 
+    if (network.location.longitude < lowestLongitude) {
+      lowestLongitude = network.location.longitude; 
     }
   }
   return lowestLongitude;
