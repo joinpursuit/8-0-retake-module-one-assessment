@@ -102,8 +102,19 @@ function getAllBikeNetworksInTheUS(networks) {
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude(networks) {}
-  
+function getBikeNetworkWithLowestLongitude(networks) {
+  if (!networks.length) {
+    return null;
+  }
+  let lowestLongitude = Math.min(networks[0].location.longitude);
+  for (let network of networks) {
+    if (network < lowestLongitude) {
+      lowestLongitude = network; 
+    }
+  }
+  return lowestLongitude;
+}
+   
 
 /**
  * countByCountry()
@@ -158,7 +169,15 @@ function countByCountry(networks) {
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+  let newObj = null;
+  for (let network of networks) {
+    if (network.id === id) {
+      newObj = network;
+    }
+  }
+  return newObj;
+}
 
 /**
  * filterByCountry()
@@ -176,13 +195,13 @@ function findById() {}
     ]
  */
 function filterByCountry(networks, country) {
-  let newObj = [];
+  let newArr = [];
   for (let network of networks) {  
     if (network.location.country === country) {
-    newObj.push(network);
+    newArr.push(network);
     }
   }
-  return newObj;
+  return newArr;
 }
 
 /**
@@ -220,8 +239,20 @@ function filterByCountry(networks, country) {
       ...
     ]
  */
-function transformNetworks() {}
+function transformNetworks(networks) {
+  let newArr = [];
+    for (let network of networks) {
+      if (network.length === 1) { 
+      message = `id: "${network.id}"\nname: "${network.name}"\nlocation: "${network.location.city}, ${network.location.country}"\ncompanies: "${network.company}"`
+      }
+        else {
+         message = `id: "${network.id}"\nname: "${network.name}"\nlocation: "${network.location.city}, ${network.location.country}"\ncompanies: "${network.company},`
+       }
+    }
+      return newArr; 
+}
 
+console.log(transformNetworks(exampleNetworks));
 module.exports = {
   getAllBikeNetworkNames,
   getAllBikeNetworksInTheUS,
