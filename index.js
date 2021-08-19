@@ -202,11 +202,11 @@ function findById(networks, id) {
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry(networks, country) {
+function filterByCountry(networks, countr) {
        let byCountry = [];
        for (let i = 0; i < networks.length; i++) {
-         if (networks[i].location.country === country){
-          byCountry.push(networks[i].location.country);
+         if (networks[i].location.country === countr){
+          byCountry.push(networks[i]);
          }
     }
     return byCountry;
