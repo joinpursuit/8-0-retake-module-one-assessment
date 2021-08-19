@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all network data.
 */
+const networks = require("./bike-networks");
 const exampleNetworks = require("./bike-networks");
 // Do not change the line above.
 
@@ -29,7 +30,22 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+
+// TO-DO:
+// [x] loop through each object in the array of objects
+// [x] return name index in each object
+// [x] if the array is empty, return []
+function getAllBikeNetworkNames(networks) {
+  let networksArr = []
+
+for(let i = 0; i < networks.length; i++){
+  let network = networks[i]
+
+  networksArr.push(network.name)
+}
+
+return networksArr
+}
 
 /**
  * getAllBikeNetworksInTheUS()
@@ -57,7 +73,15 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+
+    // TO-DO:
+    // [] loop through the array of objects
+    // [] return the networks located in country: US
+    // [] if there are no networks in the US or the input is empty, return []
+function getAllBikeNetworksInTheUS(networks) {
+  // let USA = {}
+  // return USA
+}
 
 /**
  * getBikeNetworkWithLowestLongitude()
@@ -86,7 +110,28 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+
+    // TO-DO:
+    // [x] loop through the array of objects
+    // [x] return the bike network with the lowest longitude value
+    // [x] if there are no networks inputted, return null
+    function getBikeNetworkWithLowestLongitude(networks){
+      if(!networks.length){ 
+        return null 
+      } 
+      let lowest = networks[0].location.longitude 
+      let lowestNetwork = networks[0]
+    
+      for(let i = 0; i < networks.length; i++){ 
+      let val = networks[i].location.longitude 
+         
+        if(val < lowest){
+          lowest = val
+          lowestNetwork = networks[i]
+      }
+    }
+      return lowestNetwork
+    }
 
 /**
  * countByCountry()
@@ -104,7 +149,26 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+
+    // TO-DO:
+    // key = country
+    // value = number of networks in array with that country
+    // return an object where keys are countries and the values are a number
+function countByCountry(networks) {
+  let obj = {};
+  // let accumulator = {};
+    
+  for (let network of networks) {
+   let countryKey = network.country
+   if(!obj[countryKey]){
+   obj[countryKey] = 1
+   }else if(obj[countryKey]){
+     obj[countryKey] += 1
+   }
+  }
+
+  return obj;
+}
 
 /**
  * findById()
@@ -134,7 +198,27 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+
+    // TO-DO:
+    // [x] returns an object from the network array based on the ID
+    // [x] if the network array is empty or doesnt match the bike network, return null
+function findById(networks, id) {
+  let object = null
+  if(networks.length === 0){
+    return null
+  }
+
+  for(let i = 0; i < networks.length; i++){
+  let network = networks[i].id
+  
+  if(id === network){
+  
+    return networks[i]
+  }
+
+}
+  return object
+}
 
 /**
  * filterByCountry()
@@ -151,7 +235,23 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+
+    // TO-DO:
+    // [] return and array of network objects
+    // [] the country should match the inputted 'country'
+    // [] return an empty array if no countries match the objects or the input is empty
+    // [] the country name should be abbreviated
+function filterByCountry(networks, country) {
+  let foundCountry = []
+
+
+  for (let network of networks) {
+    
+  let 
+    if (){}
+
+  return foundCountry
+}
 
 /**
  * transformNetworks()
