@@ -29,7 +29,16 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+function getAllBikeNetworkNames(networks) {
+       let bikeNetNamesArr = [];
+       for (let i = 0; i < networks.length; i++) {
+         if (networks[i].name) {
+          bikeNetNamesArr.push(networks[i].name);
+         }
+       }
+     return bikeNetNamesArr;
+}
+//console.log(getAllBikeNetworkNames(exampleNetworks));
 
 /**
  * getAllBikeNetworksInTheUS()
@@ -57,8 +66,16 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
-
+function getAllBikeNetworksInTheUS(networks) {
+      let bikeNetsInUS = [];
+      for (let i = 0; i < networks.length; i++) {
+        if (networks[i].location.country === 'US') {
+          bikeNetsInUS.push(networks[i]);
+        }
+      }
+      return bikeNetsInUS;
+}
+//console.log(getAllBikeNetworksInTheUS(exampleNetworks));
 /**
  * getBikeNetworkWithLowestLongitude()
  * -----------------------------
@@ -86,8 +103,19 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
-
+function getBikeNetworkWithLowestLongitude(networks) {
+  if (!networks.length) {
+    return null;
+  }
+      let lowestLongitude = {};
+      for (let i = 0; i < networks.length; i++) {
+         if (networks[i].location.longitude < lowestLongitude) {
+         lowestLongitude = networks[i];
+        }
+      }
+      return lowestLongitude;
+}
+//console.log(getBikeNetworkWithLowestLongitude(exampleNetworks));
 /**
  * countByCountry()
  * -----------------------------
@@ -104,7 +132,18 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {
+   let countCountry = {};
+   for (let i = 0; i < networks.length; i++) {
+     if (!countCountry[networks[i].location.country]) {
+      countCountry[networks[i].location.country] = 1;
+     } else {
+      countCountry[networks[i].location.country] += 1;
+     }
+   }
+   return countCountry;
+}
+//console.log(countByCountry(exampleNetworks));
 
 /**
  * findById()
@@ -134,7 +173,19 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+  if (!networks.length) {
+    return null;
+  }
+   let byId = {};
+   for (let i = 0; i < networks.length; i++) {
+     if (networks[i].id === id) {
+       byId = networks[i];
+       return byId;
+     }
+   }
+   return null;
+}
 
 /**
  * filterByCountry()
@@ -151,7 +202,16 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks, countr) {
+       let byCountry = [];
+       for (let i = 0; i < networks.length; i++) {
+         if (networks[i].location.country === countr){
+          byCountry.push(networks[i]);
+         }
+    }
+    return byCountry;
+}
+//console.log(filterByCountry(networks,'AU'));
 
 /**
  * transformNetworks()
@@ -188,7 +248,20 @@ function filterByCountry() {}
       ...
     ]
  */
-function transformNetworks() {}
+function transformNetworks(networks) {
+  // let id = networks.id;
+  // let name = networks.name;
+  // let city = networks.location.city;
+  // let country = networks.location.country;
+  // let companies = networks.company;
+  // let newObj = `id: '${id}', name: '${name}', location: '${city}, ${country}', companies: '${companies}'`;
+  // //  for (let i = 0; i < network.length; i++) {
+  // //    if (networks[i]) {
+  // //       newObj = networks[i];
+  // //    }
+  // //  }
+  //  return newObj.networks;
+}
 
 module.exports = {
   getAllBikeNetworkNames,
