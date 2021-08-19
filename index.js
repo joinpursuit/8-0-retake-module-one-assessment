@@ -147,8 +147,25 @@ function getBikeNetworkWithLowestLongitude(networks) {
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {
+  if (networks.length === 0) {
+    return {}; // empty object
+  }
 
+  let countCountry = {};
+  for (let i = 0; i < networks.length; i++) {
+    // object[keys-as-countries]
+    if (countCountry[networks[i].location.country]) {
+      countCountry[networks[i].location.country]++;
+    } else {
+      countCountry[networks[i].location.country] = 1;
+    }
+  }
+  return countCountry;
+}
+
+// location: {
+  // country: "FR",
 /**
  * findById()
  * -----------------------------
