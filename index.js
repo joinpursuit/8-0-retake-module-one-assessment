@@ -253,8 +253,33 @@ function filterByCountry(networks, country) {
       ...
     ]
  */
-function transformNetworks() {}
+function transformNetworks(networks) {
+  let newArr = [];
+  let obj = {};
 
+  for (const network of networks){
+    let ide = network.location;
+    if(network.id !== undefined){
+      obj.id = network.id
+    } 
+    if (network.name !== undefined){
+      obj.name = network.name
+    }
+    if (ide !== undefined){
+      obj.location = ide.city + "," + " " + ide.country
+    
+    }
+    if (network.company.length > 1){
+      obj.companies = network.company.join(", ");
+    } else if (network.company.length === 1) {
+      obj.companies = network.company.join();
+    }
+    newArr.push(obj);
+  }
+  return newArr;
+  
+}
+transformNetworks(exampleNetworks);
 module.exports = {
   getAllBikeNetworkNames,
   getAllBikeNetworksInTheUS,
