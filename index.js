@@ -151,15 +151,14 @@ function getAllBikeNetworksInTheUS(networks) {
  */
 
     // TO-DO:
-    // key = country
-    // value = number of networks in array with that country
-    // return an object where keys are countries and the values are a number
+    // [] key = country
+    // [] value = number of networks in array with that country
+    // [] return an object where keys are countries and the values are a number
 function countByCountry(networks) {
   let obj = {};
-  // let accumulator = {};
     
   for (let network of networks) {
-   let countryKey = network.country
+   let countryKey = network.location.country
    if(!obj[countryKey]){
    obj[countryKey] = 1
    }else if(obj[countryKey]){
@@ -242,15 +241,14 @@ function findById(networks, id) {
     // [] return an empty array if no countries match the objects or the input is empty
     // [] the country name should be abbreviated
 function filterByCountry(networks, country) {
-  let foundCountry = []
+  // let foundCountry = []
 
-
-  for (let network of networks) {
+  // for (let network of networks) {
     
-  let 
-    if (){}
+  // let 
+  //   if (){}
 
-  return foundCountry
+  // return foundCountry
 }
 
 /**
