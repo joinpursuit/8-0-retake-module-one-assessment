@@ -308,7 +308,7 @@ describe("findById()", () => {
   });
 });
 
-describe("filterByCountry()", () => {
+describe.only("filterByCountry()", () => {
   test("should return all of the networks from the given country", () => {
     const actual = filterByCountry(networks, "AU");
     const expected = [
