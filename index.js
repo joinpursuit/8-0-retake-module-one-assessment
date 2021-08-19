@@ -29,18 +29,21 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-    function getAllBikeNetworkNames(networks) {
-      if (networks.length === 0) {
-        return []; // array
-      }
-    
-      let allBikeNetworkNames = [];
-    
-      for (let i = 0; i < networks.length; i++) {
-        allBikeNetworkNames.push(networks[i].name);
-      }
-      return allBikeNetworkNames;
-    }
+function getAllBikeNetworkNames(networks) {
+  if (networks.length === 0) {
+    return []; // array
+  }
+
+  let allBikeNetworkNames = [];
+
+  for (let i = 0; i < networks.length; i++) {
+    allBikeNetworkNames.push(networks[i].name);
+  }
+  return allBikeNetworkNames;
+}
+// where in array of objects:
+//    name: "UBike",
+
 /**
  * getAllBikeNetworksInTheUS()
  * -----------------------------
@@ -67,8 +70,23 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+function getAllBikeNetworksInTheUS(networks) {
+  // if array is empty, return empty array
+  if (networks.length === 0) {
+    return []; // array
+  }
 
+  let allBikeNetworksInTheUs = [];
+  for (let i = 0; i < networks.length; i++) {
+    if (networks[i].location.country === "US") {
+      allBikeNetworksInTheUs.push(networks[i]);
+    }
+  }
+  return allBikeNetworksInTheUs;
+}
+// where in array of objects:
+// location: {
+//   country: "FR",
 /**
  * getBikeNetworkWithLowestLongitude()
  * -----------------------------
