@@ -69,7 +69,7 @@ function getAllBikeNetworkNames(networks) {
 function getAllBikeNetworksInTheUS(networks) {
       let bikeNetsInUS = [];
       for (let i = 0; i < networks.length; i++) {
-        if (networks[i].location.country === networks.location.country['US']) {
+        if (networks[i].location.country === 'US') {
           bikeNetsInUS.push(networks[i]);
         }
       }
