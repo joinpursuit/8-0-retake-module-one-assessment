@@ -266,6 +266,7 @@ function transformNetworks(networks) {
   let newArr = [];
   for (let i = 0; i < networks.length; i++){
     // needs to return a new array with the following objects as keys in this order: `.id`, `.name`, `.location` and `.companies`
+    let networks = networks[i]
     if (networks.id && networks.name && networks.location && networks.company === newArr){
       return networks
 
