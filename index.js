@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all network data.
 */
+const networks = require("./bike-networks");
 const exampleNetworks = require("./bike-networks");
 // Do not change the line above.
 
@@ -63,7 +64,16 @@ function getAllBikeNetworkNames(networks) {
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+function getAllBikeNetworksInTheUS(networks) {
+  let usNetworks = [];
+  for (let network of networks) {
+    if (network.location.country === 'US') {
+      usNetworks.push(network);
+    }
+  }
+  return usNetworks;
+}
+ 
 
 /**
  * getBikeNetworkWithLowestLongitude()
@@ -92,7 +102,8 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+function getBikeNetworkWithLowestLongitude(networks) {}
+  
 
 /**
  * countByCountry()
