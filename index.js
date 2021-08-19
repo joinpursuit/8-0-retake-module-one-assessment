@@ -29,8 +29,18 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
-
+    function getAllBikeNetworkNames(networks) {
+      if (networks.length === 0) {
+        return []; // array
+      }
+    
+      let allBikeNetworkNames = [];
+    
+      for (let i = 0; i < networks.length; i++) {
+        allBikeNetworkNames.push(networks[i].name);
+      }
+      return allBikeNetworkNames;
+    }
 /**
  * getAllBikeNetworksInTheUS()
  * -----------------------------
