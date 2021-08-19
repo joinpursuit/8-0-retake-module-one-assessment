@@ -279,7 +279,38 @@ function filterByCountry(networks, country) {
       ...
     ]
  */
-function transformNetworks() {}
+function transformNetworks(networks) {
+  if (networks.length === 0) {
+    return []; //empty array
+  }
+
+  let transformedNetworks = []; // array
+  for (let i = 0; i < networks.length; i++) {
+    // define variables
+    theID = networks[i].id;
+    theName = networks[i].name;
+    theLocation = networks[i].location.city + ", " + networks[i].location.country;
+    theCompany = networks[i].company // change array to string, change key to "companies" using .join()
+
+    let newObject = {
+      id: theID,
+      name: theName,
+      location: theLocation,
+      companies: theCompany.join(', '),
+    }
+
+    transformedNetworks.push(newObject);
+  }
+  return transformedNetworks;
+}
+// where in array of objects:
+// company: ["Smovengo"],
+// id: "velib",
+// location: {
+//   city: "Paris",
+//   country: "FR",
+// },
+// name: "Velib' M\u00e9trop\u00f4le",
 
 module.exports = {
   getAllBikeNetworkNames,
