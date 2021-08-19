@@ -86,7 +86,7 @@ for(let i = 0; i < networks.length; i++){
   let result = "US"
 
   if(network.location.country === "US"){
-  network.push(usa)
+  usa.push(network)
   }
 }
   return usa
