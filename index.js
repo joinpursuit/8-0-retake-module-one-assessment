@@ -121,7 +121,14 @@ function getBikeNetworkWithLowestLongitude(networks) {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {
+  let newObj = {};
+  for (let network of networks) {
+    newObj[network.location.country] =
+    newObj[network.location.country] + 1 || 1; 
+  }
+  return newObj; 
+}
 
 /**
  * findById()
@@ -168,7 +175,15 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks, country) {
+  let newObj = [];
+  for (let network of networks) {  
+    if (network.location.country === country) {
+    newObj.push(network);
+    }
+  }
+  return newObj;
+}
 
 /**
  * transformNetworks()
