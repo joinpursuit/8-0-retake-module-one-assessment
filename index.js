@@ -225,8 +225,25 @@ function findById(networks, id) {
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks, country) {
+  if (networks.length === 0) {
+    return []; // empty array
+  }
 
+  let filterCountry = []; // array
+  for (let i = 0; i < networks.length; i++) {
+    if (networks[i].location.country === country) {
+      // entire object - not just the one line (example = ???????)
+      filterCountry.push(networks[i]);
+    }
+  }
+  return filterCountry;
+}
+// where in array of objects:
+// location: {
+//   country: "FR",
+// },
+// name: "Velib' M\u00e9trop\u00f4le",
 /**
  * transformNetworks()
  * -----------------------------
