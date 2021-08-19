@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all network data.
 */
+const networks = require("./bike-networks");
 const exampleNetworks = require("./bike-networks");
 // Do not change the line above.
 
@@ -29,7 +30,13 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+function getAllBikeNetworkNames(networks) {
+  if(networks.length === 0) return [];
+
+  return networks.map(el => {
+    return el.name;
+  });
+}
 
 /**
  * getAllBikeNetworksInTheUS()
@@ -57,7 +64,14 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+function getAllBikeNetworksInTheUS(networks) {
+  if(networks.length === 0) return [];
+
+  return networks.filter(el => {
+    return el.location.country === 'US';
+  });
+}
+
 
 /**
  * getBikeNetworkWithLowestLongitude()
@@ -86,7 +100,15 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+function getBikeNetworkWithLowestLongitude(networks) {
+  if(networks.length === 0) return null;
+
+  return networks.reduce((acc,cVal) => {
+    return acc.location.longitude > cVal.location.longitude ? cVal: acc; 
+  });
+}
+
+// console.log(getBikeNetworkWithLowestLongitude(exampleNetworks));
 
 /**
  * countByCountry()
@@ -104,7 +126,20 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {
+  if(networks.length === 0) return {};
+
+  return networks.reduce((acc,cVal) => {
+    if(acc[cVal.location.country]) {
+      acc[cVal.location.country]++;
+    } else {
+      acc[cVal.location.country] = 1;
+    }
+    return acc;
+  },{});
+}
+
+// console.log(countByCountry(exampleNetworks));
 
 /**
  * findById()
@@ -134,7 +169,9 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+  return networks.find(el => el.id === id) ? networks.find(el => el.id === id) : null;
+}
 
 /**
  * filterByCountry()
@@ -151,7 +188,15 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks,country) {
+  if(networks.length === 0) return [];
+
+  return networks.filter(el => {
+    return el.location.country === country;
+  });
+}
+
+// console.log(filterByCountry(exampleNetworks, "AU"));
 
 /**
  * transformNetworks()
@@ -188,7 +233,27 @@ function filterByCountry() {}
       ...
     ]
  */
-function transformNetworks() {}
+function transformNetworks(networks) {
+  //its a map problem
+  if(networks.length === 0) return [];
+
+  return networks.map(el => {
+    const newNetWork = {};
+    newNetWork.id = el.id;
+    newNetWork.name = el.name;
+    newNetWork.location = `${el.location.city}, ${el.location.country}`;
+    newNetWork.companies = "";
+
+    if(el.company.length === 1) {
+      newNetWork.companies += el.company;
+    } else {
+      newNetWork.companies = el.company.join(', ');
+    }
+    return newNetWork;
+  });
+}
+
+transformNetworks(exampleNetworks);
 
 module.exports = {
   getAllBikeNetworkNames,
