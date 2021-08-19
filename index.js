@@ -29,7 +29,15 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+function getAllBikeNetworkNames(networks) {
+       let bikeNetNamesArr = [];
+       for (let i = 0; i < networks.length; i++) {
+         if (networks[i].name) {
+          bikeNetNamesArr.push(networks[i].name);
+         }
+       }
+     return bikeNetNamesArr;
+}
 
 /**
  * getAllBikeNetworksInTheUS()
