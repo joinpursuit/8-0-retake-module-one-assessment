@@ -79,8 +79,17 @@ return networksArr
     // [] return the networks located in country: US
     // [] if there are no networks in the US or the input is empty, return []
 function getAllBikeNetworksInTheUS(networks) {
-  // let USA = {}
-  // return USA
+  let usa = []
+
+for(let i = 0; i < networks.length; i++){
+  let network = networks[i]
+  let result = "US"
+
+  if(network.location.country === "US"){
+  network.push(usa)
+  }
+}
+  return usa
 }
 
 /**
