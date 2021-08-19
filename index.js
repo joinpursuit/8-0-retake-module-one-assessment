@@ -194,8 +194,22 @@ function countByCountry(networks) {
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+  if (networks.length === 0) {
+    return null; // null
+  }
 
+  let networkById = {} // object
+  for (let i = 0; i < networks.length; i++) {
+    if (networks[i].id === id) {
+      return networkById = networks[i];
+    }
+  }
+  // if ID does not match, return null
+  return null;
+}
+// where in array of objects:
+// id: "velib",
 /**
  * filterByCountry()
  * -----------------------------
