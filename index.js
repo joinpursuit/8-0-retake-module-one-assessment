@@ -151,9 +151,9 @@ function getAllBikeNetworksInTheUS(networks) {
  */
 
     // TO-DO:
-    // [] key = country
-    // [] value = number of networks in array with that country
-    // [] return an object where keys are countries and the values are a number
+    // [x] key = country
+    // [x] value = number of networks in array with that country
+    // [x] return an object where keys are countries and the values are a number
 function countByCountry(networks) {
   let obj = {};
     
@@ -236,19 +236,22 @@ function findById(networks, id) {
  */
 
     // TO-DO:
-    // [] return and array of network objects
-    // [] the country should match the inputted 'country'
-    // [] return an empty array if no countries match the objects or the input is empty
-    // [] the country name should be abbreviated
+    // [x] return and array of network objects
+    // [x] the country should match the inputted 'country'
+    // [x] return an empty array if no countries match the objects or the input is empty
+    // [x] the country name should be abbreviated
 function filterByCountry(networks, country) {
-  // let foundCountry = []
+  let foundCountry = []
 
-  // for (let network of networks) {
+  for (let network of networks) {
     
-  // let 
-  //   if (){}
+  let place = network.location.country
 
-  // return foundCountry
+    if (place.includes(country)){
+      foundCountry.push(network)
+    }
+  }
+  return foundCountry
 }
 
 /**
@@ -286,6 +289,12 @@ function filterByCountry(networks, country) {
       ...
     ]
  */
+
+    // TO-DO:
+    // [] return an array of objects based of the networks
+    // [] change the keys to the ones given in the instructions
+    // [] combine multiple keys to create one value for certain keys
+    // [] re-establish certain values
 function transformNetworks() {}
 
 module.exports = {
