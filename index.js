@@ -207,12 +207,16 @@ function findById(networks, id) {
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry(networks, country) {}
-  // let countryArr = [];
-  // for (const network of networks){
-  //   let ide = 
-  // }
-//}
+function filterByCountry(networks, country) {
+  let countryArr = [];
+  for (const network of networks){
+    let ide = network.location;
+    if(ide.country === country){
+      countryArr.push(network);
+    }
+  }
+  return countryArr;
+}
 
 /**
  * transformNetworks()
