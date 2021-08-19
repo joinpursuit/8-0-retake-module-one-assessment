@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all network data.
 */
+const networks = require("./bike-networks");
 const exampleNetworks = require("./bike-networks");
 // Do not change the line above.
 
@@ -29,7 +30,13 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+function getAllBikeNetworkNames(networks) {
+  let nameArray = [];
+  for (let net of networks) {
+    nameArray.push(net.name);
+  }
+  return nameArray;
+}
 
 /**
  * getAllBikeNetworksInTheUS()
@@ -57,7 +64,14 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+function getAllBikeNetworksInTheUS(networks) {
+  let arrayUS = [];
+  for (let net of networks) {
+    if (net.location.country === "US")
+    arrayUS.push(net);
+  }
+  return arrayUS;
+}
 
 /**
  * getBikeNetworkWithLowestLongitude()
@@ -86,7 +100,19 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+function getBikeNetworkWithLowestLongitude(networks) {
+  if (networks.length === 0) {
+    return null;
+  }
+  let lowLong = networks[0];
+  for (let i = 1; i < networks.length; i++) {
+    let long = networks[i].location.longitude;
+    if (long < lowLong.location.longitude) {
+      lowLong = networks[i];
+    }
+  }
+  return lowLong;
+}
 
 /**
  * countByCountry()
@@ -104,7 +130,17 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {
+  let count = {};
+  for (let i = 0; i < networks.length; i++) {
+    if (!count[networks[i].location.country]) {
+      count[networks[i].location.country] = 1;
+    } else {
+      count[networks[i].location.country] += 1;
+    }
+  }
+  return count;
+}
 
 /**
  * findById()
@@ -134,7 +170,15 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+  let netId = null;
+  for (let i = 0; i < networks.length; i++) {
+    if (networks[i].id === id) {
+      netId = networks[i];
+    }
+  }
+  return netId;
+}
 
 /**
  * filterByCountry()
@@ -151,7 +195,16 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks, country) {
+  let countryArray = [];
+  for (let net of networks) {
+    let countryLowercase = net.location.country.toLowerCase();
+    if (countryLowercase.includes(country.toLowerCase())) {
+      countryArray.push(net);
+    }
+  }
+  return countryArray;
+}
 
 /**
  * transformNetworks()
@@ -188,7 +241,19 @@ function filterByCountry() {}
       ...
     ]
  */
-function transformNetworks() {}
+function transformNetworks(networks) {
+  let netArray = []
+  for (let i = 0; i < networks.length; i++) {
+  let newNet = {
+    id: `${networks[i].id}`,
+    name: `${networks[i].name}`,
+    location: `${networks[i].location.city}, ${networks[i].location.country}`,
+    companies: `${networks[i].company}`,
+  }
+  netArray.push(newNet)
+}
+return netArray
+}
 
 module.exports = {
   getAllBikeNetworkNames,
