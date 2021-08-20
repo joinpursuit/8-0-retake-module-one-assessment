@@ -29,7 +29,23 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+
+//return an array
+//array of strings ... the names from the network array of objects 
+//create an empty array
+//create a loop
+//the loop is to check for names
+//add all names to the empty array
+//return an empty array if the network input is empty 
+
+function getAllBikeNetworkNames(networks) {
+  let allBikeNames = [];
+
+  for (let network of networks){
+    allBikeNames.push(network.name);
+  }
+  return allBikeNames;
+}
 
 /**
  * getAllBikeNetworksInTheUS()
