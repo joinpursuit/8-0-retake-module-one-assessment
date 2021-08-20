@@ -121,7 +121,28 @@ function getAllBikeNetworksInTheUS(networks) {
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+//return an object
+//returns the object in the array networks with the lowest longitude
+//create a loop
+//the loop is to check for the object with lowest longitude
+//if the object has the lowest longitude return that object
+//if the input is empty return null
+
+function getBikeNetworkWithLowestLongitude(networks) {
+  if(networks.length === 0){
+    return null;
+  }
+  let lowestLongitude = networks[0].location.longitude
+  let networkObj = networks[0]
+  for (let i = 0; i < networks.length; i++){
+    let lowLongitude = networks[i].location.longitude
+    if(lowestLongitude > lowLongitude){
+      lowestLongitude = lowLongitude
+      networkObj = networks[i]
+    }
+  }
+  return networkObj;
+}
 
 /**
  * countByCountry()
