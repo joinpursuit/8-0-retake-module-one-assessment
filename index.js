@@ -297,10 +297,38 @@ function filterByCountry(networks, country) {
       ...
     ]
  */
+//return an array
+//array of objects with values transformed
+//create a loop
+//this loop is to go through each object to access certain key : values
+//the array will have an object with a new format
+//the object will have the id 
+//the object will have the name 
+//the location will have city and country joined together
+//company array joined with commas
 
+//create a helper function to create the new object with a diff format
 
-function transformNetworks() {}
+function transformObject(network){
+  let newObj = {};
+  for (let network of networks){
+    newObj[id] = network.id
+    newObj[name] = network.name
+    newObj[location] = network.location.city + "," + network.location.country
+    newObj[companies] = network.company.toString()
+  }
+  return newObj;
+}
 
+function transformNetworks(networks) {
+  let newNetwork = [];
+  for (let network of networks){
+    newNetwork.push(transformObject(network))
+  }
+  return newNetwork;
+}
+   
+    
 module.exports = {
   getAllBikeNetworkNames,
   getAllBikeNetworksInTheUS,
