@@ -160,7 +160,30 @@ function getBikeNetworkWithLowestLongitude(networks) {
       // ... 
     }
  */
-function countByCountry() {}
+//return an object
+//key of the object : country name
+//value of the keys : number of bikes with that country
+//if input is empty return empty object
+//create a loop
+//check for the country
+//add the key and values to theobject
+
+function countByCountry(networks) {
+  let counts = {};
+  if(networks.length === 0){
+    return counts;
+  }
+  for (let network of networks){
+    if(!counts[network.location.country]){
+      counts[network.location.country] = 1
+    } else if (counts.hasOwnProperty(network.location.country)){
+      counts[network.location.country] += 1
+    }
+  }
+  return counts;
+}
+ 
+
 
 /**
  * findById()
