@@ -246,7 +246,21 @@ function findById(networks, id) {
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+//return an array
+//array with bike objects that match the country
+//if !== country or the input is empty return an empty array
+//create a loop
+//the loop is to check for objects that match the country
+
+function filterByCountry(networks, country) {
+  let result = [];
+  for (let network of networks){
+    if(network.location.country.includes(country)){
+      result.push(network)
+    }
+  }
+  return result;
+}
 
 /**
  * transformNetworks()
@@ -283,6 +297,8 @@ function filterByCountry() {}
       ...
     ]
  */
+
+
 function transformNetworks() {}
 
 module.exports = {
