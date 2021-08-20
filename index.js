@@ -213,7 +213,23 @@ function countByCountry(networks) {
       name: "Indego",
     }
  */
-function findById() {}
+//return an object 
+//object with the movie object if the id matches
+//create a loop
+//the loop will check if any object in the array has the same ID
+//if the !== id or empty input return null
+
+function findById(networks, id) {
+  if(networks.length === 0){
+    return null;
+  }
+  for (let network of networks){
+    if(network.id === id){
+      return network
+    }
+  }
+  return null;
+}
 
 /**
  * filterByCountry()
