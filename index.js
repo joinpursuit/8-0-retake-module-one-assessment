@@ -73,7 +73,26 @@ function getAllBikeNetworkNames(networks) {
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+//return an array
+//an array of object
+//create an empty array
+//create a loop
+//the loop is to check if the country === US
+//if so add the object to the array
+//return that array
+//if the country !== US or input is empty return emty array
+
+function getAllBikeNetworksInTheUS(networks) {
+  let bikesInUS = [];
+
+  for (let network of networks){
+    if (network.location.country === "US"){
+      bikesInUS.push(network)
+    }
+  }
+
+  return bikesInUS;
+}
 
 /**
  * getBikeNetworkWithLowestLongitude()
