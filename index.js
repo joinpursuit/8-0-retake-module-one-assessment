@@ -29,7 +29,23 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+
+//return an array
+//array of strings ... the names from the network array of objects 
+//create an empty array
+//create a loop
+//the loop is to check for names
+//add all names to the empty array
+//return an empty array if the network input is empty 
+
+function getAllBikeNetworkNames(networks) {
+  let allBikeNames = [];
+
+  for (let network of networks){
+    allBikeNames.push(network.name);
+  }
+  return allBikeNames;
+}
 
 /**
  * getAllBikeNetworksInTheUS()
@@ -57,7 +73,26 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+//return an array
+//an array of object
+//create an empty array
+//create a loop
+//the loop is to check if the country === US
+//if so add the object to the array
+//return that array
+//if the country !== US or input is empty return emty array
+
+function getAllBikeNetworksInTheUS(networks) {
+  let bikesInUS = [];
+
+  for (let network of networks){
+    if (network.location.country === "US"){
+      bikesInUS.push(network)
+    }
+  }
+
+  return bikesInUS;
+}
 
 /**
  * getBikeNetworkWithLowestLongitude()
@@ -86,7 +121,28 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+//return an object
+//returns the object in the array networks with the lowest longitude
+//create a loop
+//the loop is to check for the object with lowest longitude
+//if the object has the lowest longitude return that object
+//if the input is empty return null
+
+function getBikeNetworkWithLowestLongitude(networks) {
+  if(networks.length === 0){
+    return null;
+  }
+  let lowestLongitude = networks[0].location.longitude
+  let networkObj = networks[0]
+  for (let i = 0; i < networks.length; i++){
+    let lowLongitude = networks[i].location.longitude
+    if(lowestLongitude > lowLongitude){
+      lowestLongitude = lowLongitude
+      networkObj = networks[i]
+    }
+  }
+  return networkObj;
+}
 
 /**
  * countByCountry()
@@ -104,7 +160,30 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+//return an object
+//key of the object : country name
+//value of the keys : number of bikes with that country
+//if input is empty return empty object
+//create a loop
+//check for the country
+//add the key and values to theobject
+
+function countByCountry(networks) {
+  let counts = {};
+  if(networks.length === 0){
+    return counts;
+  }
+  for (let network of networks){
+    if(!counts[network.location.country]){
+      counts[network.location.country] = 1
+    } else if (counts.hasOwnProperty(network.location.country)){
+      counts[network.location.country] += 1
+    }
+  }
+  return counts;
+}
+ 
+
 
 /**
  * findById()
@@ -134,7 +213,23 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+//return an object 
+//object with the movie object if the id matches
+//create a loop
+//the loop will check if any object in the array has the same ID
+//if the !== id or empty input return null
+
+function findById(networks, id) {
+  if(networks.length === 0){
+    return null;
+  }
+  for (let network of networks){
+    if(network.id === id){
+      return network
+    }
+  }
+  return null;
+}
 
 /**
  * filterByCountry()
@@ -151,7 +246,21 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+//return an array
+//array with bike objects that match the country
+//if !== country or the input is empty return an empty array
+//create a loop
+//the loop is to check for objects that match the country
+
+function filterByCountry(networks, country) {
+  let result = [];
+  for (let network of networks){
+    if(network.location.country.includes(country)){
+      result.push(network)
+    }
+  }
+  return result;
+}
 
 /**
  * transformNetworks()
@@ -188,8 +297,38 @@ function filterByCountry() {}
       ...
     ]
  */
-function transformNetworks() {}
+//return an array
+//array of objects with values transformed
+//create a loop
+//this loop is to go through each object to access certain key : values
+//the array will have an object with a new format
+//the object will have the id 
+//the object will have the name 
+//the location will have city and country joined together
+//company array joined with commas
 
+//create a helper function to create the new object with a diff format
+
+function transformObject(network){
+  let newObj = {};
+  for (let network of networks){
+    newObj[id] = network.id
+    newObj[name] = network.name
+    newObj[location] = network.location.city + "," + network.location.country
+    newObj[companies] = network.company.toString()
+  }
+  return newObj;
+}
+
+function transformNetworks(networks) {
+  let newNetwork = [];
+  for (let network of networks){
+    newNetwork.push(transformObject(network))
+  }
+  return newNetwork;
+}
+   
+    
 module.exports = {
   getAllBikeNetworkNames,
   getAllBikeNetworksInTheUS,
