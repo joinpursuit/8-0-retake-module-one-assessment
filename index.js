@@ -5,12 +5,13 @@
 */
 const exampleNetworks = require("./bike-networks");
 // Do not change the line above.
-
+const log = console.log
 /**
  * getAllBikeNetworkNames()
  * -----------------------------
  * Returns all of names from an array of networks. If the inputted `networks` array is empty, return `[]`.
- * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
+ * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of 
+ * this array.
  * @returns {string[]} An array of strings, which are network names.
  *
  * EXAMPLE:
@@ -29,12 +30,26 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+function getAllBikeNetworkNames(networks) {
+  let bikeNetwork = []
+  if(!networks.length){
+    return bikeNetwork
+  }
+  let bikeSting = {}
+  
+  for (let bike of networks){
+    bikeSting = bike.name
+    bikeNetwork.push(bikeSting)
+  }
+
+return bikeNetwork
+}
 
 /**
  * getAllBikeNetworksInTheUS()
  * -----------------------------
- * Returns an array of all networks located in the United States (i.e. "US"). If there are no networks in the "US" or the input is empty, return an empty array.
+ * Returns an array of all networks located in the United States (i.e. "US"). If there are no networks in the "US" 
+ * or the input is empty, return an empty array.
  * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
  * @returns {Object[]} An array of objects, where each network object has a location in the "US".
  * 
@@ -57,12 +72,24 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+function getAllBikeNetworksInTheUS(networks) {
+  let inUsa = []
+  if (!networks.length){
+    return inUsa;
+  }
+  for (let bikeInUsa of networks){
+    if(bikeInUsa.location.country ==='US')
+    inUsa.push(bikeInUsa)
+  }
+
+return inUsa
+}
 
 /**
  * getBikeNetworkWithLowestLongitude()
  * -----------------------------
- * Returns the bike network which has the smallest value for `longitude`. If there are no networks in the input, returns `null`.
+ * Returns the bike network which has the smallest value for `longitude`. If there are no networks in the input, 
+ * returns `null`.
  * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
  * @returns {Object} The bike network with the smallest value for `longitude`.
  * 
@@ -86,14 +113,29 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+function getBikeNetworkWithLowestLongitude(networks) {
+let smallestLat = networks[0];
+if(!networks.length){
+  return null;
+}
+
+for(let lat of networks){
+  if(lat.location.longitude < smallestLat.location.longitude){
+    smallestLat = lat
+  }
+}
+return  smallestLat;
+}
 
 /**
  * countByCountry()
  * -----------------------------
- * Returns an object where the keys are countries and the values are the number of networks in the array with that country. If the inputted `networks` array is empty, return `{}`.
- * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
- * @returns {Object} An object where keys are countries (e.g. "AU") and the values are how many networks in the array are in that country (e.g. 2).
+ * Returns an object where the keys are countries and the values are the number of networks in the array 
+ * with that country. If the inputted `networks` array is empty, return `{}`.
+ * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of 
+ * this array.
+ * @returns {Object} An object where keys are countries (e.g. "AU") and the values are how many networks 
+ * in the array are in that country (e.g. 2).
  *
  * EXAMPLE:
  *  countByCountry(networks);
@@ -104,12 +146,28 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {
 
+  let countryKey = {}
+  if(!networks.length){
+    return countryKey
+  }
+for (let countKey of networks){
+if(countryKey[countKey.location.country] !== undefined){
+  countryKey[countKey.location.country] = countryKey[countKey.location.country] + 1;
+} else {
+  countryKey[countKey.location.country] = 1
+}
+}
+
+return countryKey
+}
+//log( countByCountry(exampleNetworks))
 /**
  * findById()
  * -----------------------------
- * Returns a network object from an array of objects based on the ID. If the inputted `networks` array is empty or the ID does not match any bike network, return `null`.
+ * Returns a network object from an array of objects based on the ID. If the inputted `networks` 
+ * array is empty or the ID does not match any bike network, return `null`.
  * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
  * @param {string} id - A unique `id`.
  * @returns {Object|null} The network object with the matching `id`.
@@ -134,12 +192,25 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks, id) {
+ let idNetwork = null
+//  if(id !== true || !networks.length ){
+//   return idNetwork
+// }
+  for (let idBike of networks ){
+    if(idBike.id === id){
+      idNetwork = idBike
+    } 
+  }
+
+return idNetwork
+}
 
 /**
  * filterByCountry()
  * -----------------------------
- * Returns an array of network objects where the network country matches the inputted `country`. If there are no matching objects, or the input is empty, return an empty array.
+ * Returns an array of network objects where the network country matches the inputted `country`. 
+ * If there are no matching objects, or the input is empty, return an empty array.
  * @param {Object[]} networks - An array of networks. See the `bike-networks.js` file for an example of this array.
  * @param {String} country - A country name abbreviation
  * @returns {Object[]} An array of objects, where each network object has a location in the matching country.
@@ -151,12 +222,26 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
+function filterByCountry(networks, country) {
+  let matchCountry = []
+  // if (!networks.length || networks){
+  //     return matchCountry
 
+  // }
+  for(let mCountry of networks){
+    const countryM = mCountry.location.country
+    if(countryM === country){
+      matchCountry.push(mCountry)
+    }
+  }
+  return matchCountry
+}
+//log(filterByCountry(exampleNetworks, "AU"))
 /**
  * transformNetworks()
  * -----------------------------
- * Returns an array of objects based off of the inputted networks. However, each network is transformed so that it has the following keys:
+ * Returns an array of objects based off of the inputted networks. However, each network is transformed 
+ * so that it has the following keys:
  *  - id: The ID of the network.
  *  - name: The name of the network.
  *  - location: The network's city and country, joined together.
@@ -188,7 +273,42 @@ function filterByCountry() {}
       ...
     ]
  */
-function transformNetworks() {}
+    // for (const net of networks){
+    //   let netCom = {}
+    //   if(net.company.length){
+    // netCom = net.company.join(',')
+    
+    
+    //   }
+    // }
+
+// function joinTwoCompany(network){
+//   let netCom = {}
+//   if(network.company.length === 2){
+//     netCom = network.company.join(',')
+//    } 
+
+// return netCom
+// }
+
+function transformNetworks(networks) {
+
+let transformArr = []
+
+for (let transform of  networks){
+  if(transform.company.length){
+    let transformObj = {
+      "companies": `${transform.company.join(', ')}`, 
+      "id": `${transform.id}`, 
+      "location": `${transform.location.city}, ${transform.location.country}`,
+      "name": `${transform.name}`
+  
+    }
+    transformArr.push(transformObj) 
+}
+}
+return transformArr
+}
 
 module.exports = {
   getAllBikeNetworkNames,
